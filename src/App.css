@@ -1,0 +1,555 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.background-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  top: -100px;
+  right: -100px;
+  animation: float1 15s ease-in-out infinite;
+}
+
+.blob-2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  bottom: -50px;
+  left: -50px;
+  animation: float2 18s ease-in-out infinite;
+}
+
+.blob-3 {
+  width: 250px;
+  height: 250px;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  top: 40%;
+  left: 10%;
+  animation: float3 20s ease-in-out infinite;
+}
+
+@keyframes float1 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-50px, 50px) rotate(10deg); }
+}
+
+@keyframes float2 {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(30px, -30px) rotate(-10deg); }
+}
+
+@keyframes float3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, 40px); }
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.app-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+}
+
+.app-header p {
+  color: #6b7280;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 950px;
+}
+
+.progress-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.progress-step {
+  width: 40px;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.progress-step.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.progress-step.current {
+  transform: scaleY(1.3);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+}
+
+.app-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.app-footer p {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+/* Theme decoration element */
+.theme-decoration {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Android Emoji", sans-serif;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* ===== TRAIN THEME ===== */
+.app.train-theme {
+  background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 60%, #90EE90 70%, #228B22 100%);
+}
+
+.app.train-theme .blob-1,
+.app.train-theme .blob-2,
+.app.train-theme .blob-3 {
+  display: none;
+}
+
+.app.train-theme .theme-decoration {
+  opacity: 1;
+}
+
+.app.train-theme .theme-decoration::before {
+  content: '🚂🚃🚃🚃';
+  position: absolute;
+  bottom: 15%;
+  font-size: 8rem;
+  animation: train-move 12s linear infinite;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+}
+
+.app.train-theme .theme-decoration::after {
+  content: '☁️';
+  position: absolute;
+  top: 5%;
+  left: 10%;
+  font-size: 6rem;
+  opacity: 0.7;
+  animation: cloud-float 20s ease-in-out infinite;
+}
+
+@keyframes train-move {
+  0% { left: -30%; }
+  100% { left: 110%; }
+}
+
+@keyframes cloud-float {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(100px); }
+}
+
+.app.train-theme .app-header h1 {
+  background: linear-gradient(135deg, #2c5282 0%, #1a365d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.app.train-theme .app-header p,
+.app.train-theme .app-footer p {
+  color: #2c5282;
+}
+
+/* ===== DINO THEME - PAINTED JURASSIC LANDSCAPE ===== */
+.app.dino-theme {
+  /* Base sky gradient - sunset/prehistoric atmosphere */
+  background: 
+    /* Sun/glow */
+    radial-gradient(ellipse 40% 30% at 75% 25%, #FFD93D 0%, transparent 50%),
+    /* Sunset gradient */
+    linear-gradient(to bottom, 
+      #1a1a2e 0%,
+      #16213e 8%,
+      #0f3460 15%,
+      #533483 25%,
+      #e94560 35%,
+      #ff6b35 42%,
+      #ffa62f 50%,
+      #87CEEB 55%,
+      #87CEEB 65%,
+      #90EE90 68%,
+      #228B22 72%,
+      #1a472a 85%,
+      #0d2818 100%
+    );
+  overflow: hidden;
+}
+
+/* Hide default blobs */
+.app.dino-theme .blob-1,
+.app.dino-theme .blob-2,
+.app.dino-theme .blob-3 {
+  display: none;
+}
+
+/* Mountain layers container */
+.app.dino-theme .theme-decoration {
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* Volcano - left side, glowing */
+.app.dino-theme .theme-decoration::before {
+  content: '';
+  position: absolute;
+  bottom: 28%;
+  left: 3%;
+  width: 0;
+  height: 0;
+  border-left: 100px solid transparent;
+  border-right: 100px solid transparent;
+  border-bottom: 180px solid #2c1810;
+  filter: drop-shadow(0 -20px 40px rgba(255, 87, 34, 0.6))
+          drop-shadow(0 -10px 20px rgba(255, 193, 7, 0.4));
+  z-index: 5;
+}
+
+/* Volcano lava glow */
+.app.dino-theme .theme-decoration::after {
+  content: '🔥';
+  position: absolute;
+  bottom: calc(28% + 160px);
+  left: calc(3% + 85px);
+  font-size: 2.5rem;
+  animation: lava-glow 1.5s ease-in-out infinite alternate;
+  z-index: 6;
+}
+
+@keyframes lava-glow {
+  0% { opacity: 0.7; transform: scale(1) translateY(0); }
+  100% { opacity: 1; transform: scale(1.2) translateY(-5px); }
+}
+
+.app.dino-theme .app-header h1 {
+  background: linear-gradient(135deg, #FFD93D 0%, #ff6b35 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+}
+
+.app.dino-theme .app-header p,
+.app.dino-theme .app-footer p {
+  color: #1a472a;
+}
+
+/* ===== GRANDMA THEME ===== */
+.app.grandma-theme {
+  background: 
+    repeating-conic-gradient(
+      from 0deg at 0 0,
+      #fff8dc 0deg 90deg,
+      #ffe4c4 90deg 180deg
+    );
+  background-size: 60px 60px;
+}
+
+.app.grandma-theme .blob-1,
+.app.grandma-theme .blob-2,
+.app.grandma-theme .blob-3 {
+  display: none;
+}
+
+.app.grandma-theme .theme-decoration {
+  opacity: 1;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.4) 0%, transparent 25%),
+    radial-gradient(circle at 90% 80%, rgba(255, 182, 193, 0.4) 0%, transparent 25%),
+    radial-gradient(circle at 50% 50%, rgba(255, 218, 185, 0.3) 0%, transparent 35%);
+}
+
+.app.grandma-theme .theme-decoration::before {
+  content: '🌸';
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 4rem;
+  opacity: 0.5;
+  animation: flower-sway 3s ease-in-out infinite;
+}
+
+.app.grandma-theme .theme-decoration::after {
+  content: '🍪☕';
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  font-size: 3rem;
+  opacity: 0.4;
+}
+
+@keyframes flower-sway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.app.grandma-theme .app-header h1 {
+  background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.app.grandma-theme .app-header p,
+.app.grandma-theme .app-footer p {
+  color: #8b4513;
+}
+
+/* Extra dino decorations - mountains and roaming dinos */
+.dino-extra {
+  display: none;
+}
+
+.app.dino-theme .dino-extra {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Far mountain range - dark silhouette */
+.app.dino-theme .dino-extra::before {
+  content: '';
+  position: absolute;
+  bottom: 30%;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: 
+    /* Peak 1 */
+    linear-gradient(135deg, transparent 40%, #2c3e50 40%, #2c3e50 50%, transparent 50%),
+    /* Peak 2 - taller */
+    linear-gradient(125deg, transparent 30%, #34495e 30%, #34495e 45%, transparent 45%),
+    /* Peak 3 */
+    linear-gradient(145deg, transparent 55%, #2c3e50 55%, #2c3e50 65%, transparent 65%),
+    /* Peak 4 - right side */
+    linear-gradient(130deg, transparent 70%, #3d566e 70%, #3d566e 82%, transparent 82%);
+  background-size: 400px 250px, 350px 280px, 300px 200px, 450px 230px;
+  background-position: 0% bottom, 25% bottom, 55% bottom, 75% bottom;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Near mountain range - more detailed */
+.app.dino-theme .dino-extra::after {
+  content: '';
+  position: absolute;
+  bottom: 28%;
+  left: 0;
+  right: 0;
+  height: 200px;
+  /* Create jagged mountain silhouette with clip-path */
+  background: linear-gradient(to bottom, #1a472a 0%, #0d2818 100%);
+  clip-path: polygon(
+    0% 100%,
+    0% 80%,
+    5% 60%,
+    12% 75%,
+    18% 45%,
+    25% 65%,
+    32% 35%,
+    38% 55%,
+    45% 25%,
+    52% 50%,
+    58% 40%,
+    65% 55%,
+    72% 30%,
+    78% 50%,
+    85% 45%,
+    92% 60%,
+    100% 50%,
+    100% 100%
+  );
+  z-index: 2;
+}
+
+/* Roaming dinosaurs */
+.roaming-dino {
+  display: none;
+}
+
+.app.dino-theme .roaming-dino {
+  display: block;
+  position: absolute;
+  font-size: 4rem;
+  filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+  z-index: 3;
+}
+
+.app.dino-theme .roaming-dino.dino-1 {
+  bottom: 22%;
+  font-size: 5rem;
+  animation: dino-walk-1 25s linear infinite;
+}
+
+.app.dino-theme .roaming-dino.dino-2 {
+  bottom: 18%;
+  font-size: 4rem;
+  animation: dino-walk-2 20s linear infinite;
+  animation-delay: -10s;
+}
+
+@keyframes dino-walk-1 {
+  0% { left: -10%; transform: scaleX(1); }
+  48% { left: 105%; transform: scaleX(1); }
+  50% { left: 105%; transform: scaleX(-1); }
+  98% { left: -10%; transform: scaleX(-1); }
+  100% { left: -10%; transform: scaleX(1); }
+}
+
+@keyframes dino-walk-2 {
+  0% { right: -10%; transform: scaleX(-1); }
+  48% { right: 105%; transform: scaleX(-1); }
+  50% { right: 105%; transform: scaleX(1); }
+  98% { right: -10%; transform: scaleX(1); }
+  100% { right: -10%; transform: scaleX(-1); }
+}
+
+@keyframes trex-stomp {
+  0% { right: -10%; transform: scaleX(-1); }
+  49% { right: 100%; transform: scaleX(-1); }
+  50% { right: 100%; transform: scaleX(1); }
+  99% { right: -10%; transform: scaleX(1); }
+  100% { right: -10%; transform: scaleX(-1); }
+}
+
+/* Extra train decorations */
+.train-extra {
+  display: none;
+}
+
+.app.train-theme .train-extra {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.app.train-theme .train-extra::before {
+  content: '☁️';
+  position: absolute;
+  top: 8%;
+  right: 25%;
+  font-size: 5rem;
+  opacity: 0.8;
+  animation: cloud-float2 18s ease-in-out infinite;
+}
+
+.app.train-theme .train-extra::after {
+  content: '☁️';
+  position: absolute;
+  top: 18%;
+  left: 35%;
+  font-size: 3.5rem;
+  opacity: 0.6;
+  animation: cloud-float3 22s ease-in-out infinite;
+}
+
+@keyframes cloud-float2 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-100px); }
+}
+
+@keyframes cloud-float3 {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(120px); }
+}
+
+/* Additional train clouds */
+.train-cloud-1,
+.train-cloud-2 {
+  display: none;
+}
+
+.app.train-theme .train-cloud-1 {
+  display: block;
+  position: absolute;
+  top: 12%;
+  left: 5%;
+  font-size: 4rem;
+  opacity: 0.7;
+  animation: cloud-float4 30s ease-in-out infinite;
+}
+
+.app.train-theme .train-cloud-1::before {
+  content: '☁️';
+}
+
+.app.train-theme .train-cloud-2 {
+  display: block;
+  position: absolute;
+  top: 3%;
+  right: 50%;
+  font-size: 6rem;
+  opacity: 0.5;
+  animation: cloud-float5 35s ease-in-out infinite;
+}
+
+.app.train-theme .train-cloud-2::before {
+  content: '☁️';
+}
+
+@keyframes cloud-float4 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(80px) translateY(10px); }
+}
+
+@keyframes cloud-float5 {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-60px) translateY(-5px); }
+}

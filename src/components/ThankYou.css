@@ -1,0 +1,147 @@
+.thank-you-container {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.confetti {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -20px;
+  animation: fall 3s linear infinite;
+  border-radius: 2px;
+}
+
+@keyframes fall {
+  0% {
+    top: -20px;
+    transform: rotate(0deg) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    transform: rotate(720deg) translateX(100px);
+    opacity: 0;
+  }
+}
+
+.trophy {
+  font-size: 5rem;
+  animation: bounce 1s ease infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.thank-you-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 8px 0;
+}
+
+.thank-you-subtitle {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin: 0 0 24px 0;
+}
+
+.results-summary {
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.results-summary h3 {
+  font-size: 1rem;
+  color: #374151;
+  margin: 0 0 16px 0;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-item.comments {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.result-item.comments .result-value {
+  font-style: italic;
+  font-weight: 400;
+  text-align: left;
+  word-break: break-word;
+}
+
+.result-label {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.result-value {
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.fun-message {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 12px;
+  padding: 16px;
+  margin: 20px 0;
+}
+
+.fun-message p {
+  margin: 0;
+  color: #92400e;
+  font-size: 0.95rem;
+}
+
+.restart-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.restart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}

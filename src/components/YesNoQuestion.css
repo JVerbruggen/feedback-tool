@@ -1,0 +1,304 @@
+.yes-no-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  min-height: 280px;
+  position: relative;
+}
+
+.yes-no-question {
+  font-size: 1.1rem;
+  color: #374151;
+  text-align: center;
+  font-weight: 500;
+}
+
+.yes-no-buttons {
+  display: flex;
+  gap: 60px;
+  position: relative;
+  min-height: 180px;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.yes-btn, .no-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 40px;
+  border-radius: 16px;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.yes-btn {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  z-index: 10;
+}
+
+.yes-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+}
+
+.yes-btn.selected {
+  border-color: #15803d;
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.4);
+}
+
+.no-btn-wrapper {
+  position: relative;
+  width: 140px;
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.no-btn {
+  background: #fee2e2;
+  color: #dc2626;
+  transition: transform 0.1s ease-out, background 0.15s ease;
+  position: absolute;
+  white-space: nowrap;
+}
+
+.no-btn:hover {
+  background: #fecaca;
+}
+
+.no-btn.escaping {
+  animation: shake 0.1s ease infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: -5deg;
+  }
+  75% {
+    rotate: 5deg;
+  }
+}
+
+.btn-emoji {
+  font-size: 2rem;
+}
+
+.btn-text {
+  font-size: 0.9rem;
+}
+
+.yes-celebration {
+  font-size: 1.2rem;
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Stampede overlay */
+.stampede-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.stampede-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.stampede-warning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 4rem;
+  font-weight: 900;
+  color: #dc2626;
+  text-shadow: 3px 3px 0 #fff, -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff;
+  z-index: 100;
+  animation: warningPop 0.3s ease-out forwards;
+  white-space: nowrap;
+}
+
+@keyframes warningPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.stampede-animal {
+  position: absolute;
+  left: -150px;
+  animation: stampedeRun linear forwards;
+  filter: drop-shadow(4px 4px 8px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes stampedeRun {
+  0% {
+    left: -150px;
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-15px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-15px);
+  }
+  100% {
+    left: calc(100% + 150px);
+    transform: translateY(0);
+  }
+}
+
+.stampede-dust {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(194, 178, 128);
+  animation: dustCloud 4s ease-out forwards;
+}
+
+@keyframes dustCloud {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Screen shake effect */
+.stampede-shake {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  animation: screenShake 0.1s ease infinite;
+  pointer-events: none;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, 3px); }
+  50% { transform: translate(5px, -3px); }
+  75% { transform: translate(-3px, -5px); }
+}
+
+/* Wobble effect for some animals */
+.stampede-animal.wobble {
+  animation: stampedeRun linear forwards, animalWobble 0.2s ease infinite;
+}
+
+@keyframes animalWobble {
+  0%, 100% { rotate: -10deg; }
+  50% { rotate: 10deg; }
+}
+
+/* Spin effect for some animals */
+.stampede-animal.spin {
+  animation: stampedeRun linear forwards, animalSpin 0.3s linear infinite;
+}
+
+@keyframes animalSpin {
+  from { rotate: 0deg; }
+  to { rotate: 360deg; }
+}
+
+/* Debris particles */
+.stampede-debris {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.debris-particle {
+  position: absolute;
+  font-size: 2rem;
+  animation: debrisFly 1s ease-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes debrisFly {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(100px, -50px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Message when No button is gone */
+.no-button-gone-message {
+  font-size: 1rem;
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
